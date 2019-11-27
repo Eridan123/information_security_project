@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,13 +34,14 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form th:action="@{/signup}" method="post" th:object="${user}">
+        <input hidden="hidden" th:value="${user.id}" name="id">
         <h2 class="text-center">Create Account</h2>       
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required">
+            <input type="text" class="form-control" placeholder="Username" name="username" th:value="${user.username}" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required">
+            <input type="password" class="form-control" placeholder="Password" name="password" th:value="${user.password}" required="required">
         </div>
         <div class="form-group">
                 <input type="password" class="form-control" placeholder="Confirm Password" required="required">

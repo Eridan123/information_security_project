@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<div class="form-body" id="chat_window" role="dialog" aria-labelledby="chat_window">
+<!--<div class="form-body" id="chat_window" role="dialog" aria-labelledby="chat_window">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,17 +16,17 @@
             </div>
             <div class="modal-body bg-light p-0" id="chat-page">
 
-                <!--*******************************-->
-                <select id="cu" style="width: 100%" >
+                &lt;!&ndash;*******************************&ndash;&gt;
+                &lt;!&ndash;<select id="cu" style="width: 100%" >
                     <option th:each="user : ${#lists.sort(@chatUserServiceImpl.list())}"
                             th:value="${user.username}"
                             th:text="${user.name}"
                             th:selected="${user.username} == ${chosenUser}"
                     >Responsible</option>
-                </select>
+                </select>&ndash;&gt;
 
-                <!--div id="messageArea" class="m-3"></div-->
-                <!-- Start -->
+                &lt;!&ndash;div id="messageArea" class="m-3"></div&ndash;&gt;
+                &lt;!&ndash; Start &ndash;&gt;
                 <div class="chat" style="height: 300px">
                     <div class="chat-container">
                         <div class="conversation">
@@ -34,8 +34,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- End -->
-                <!--*******************************-->
+                &lt;!&ndash; End &ndash;&gt;
+                &lt;!&ndash;*******************************&ndash;&gt;
 
             </div>
             <div class="modal-footer">
@@ -43,10 +43,10 @@
                     <form id="messageForm" name="messageForm" >
                         <div class="form-group">
                             <div class="input-group">
-                                <!--<div class="">-->
+                                &lt;!&ndash;<div class="">&ndash;&gt;
                                 <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="col-lg-7 form-control"/>
-                                <!--</div>-->
-                                <!--<div class="col-lg-3">
+                                &lt;!&ndash;</div>&ndash;&gt;
+                                &lt;!&ndash;<div class="col-lg-3">
                                     <label for="message-file">
                                         &lt;!&ndash;<i class="fa fa-paperclip"></i>&ndash;&gt;
                                         <span></span>
@@ -54,7 +54,7 @@
                                     <form id="FileForm" th:action="@{/attachFile}" method="post" enctype="multipart/form-data">
                                         <input style="display: block" id="message-file" name = "file" type="file">
                                     </form>
-                                </div>-->
+                                </div>&ndash;&gt;
                                 <div class="col-lg-2">
                                     <button type="submit" class="btn btn-primary">Send</button>
                                 </div>
@@ -65,10 +65,10 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <script th:src="@{/js/sockjs.js}" type="text/javascript"></script>
 <script th:src="@{/js/stomp.js}" type="text/javascript"></script>
-<script type="text/javascript" th:inline="javascript">
+<!--<script type="text/javascript" th:inline="javascript">
 
     // var username = [[${#authentication.name}]];
     // Chat Begin
@@ -305,6 +305,6 @@
     });*/
 
 
-</script>
+</script>-->
 </body>
 </html>
