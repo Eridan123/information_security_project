@@ -5,130 +5,295 @@
 <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
 <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css}" type="text/css" rel="stylesheet">
+  <link th:href="@{https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css}" rel="stylesheet" />
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="container">
 <h3 class=" text-center">Messaging</h3>
 <div class="messaging">
-      <div class="inbox_msg">
+      <div class="inbox_msg" id="">
         <div class="inbox_people col">
           <div class="headind_th:srch">
             <div class="recent_heading">
-              <h4>Recent</h4>
+              <h4>USER LIST</h4>
             </div>
             <div class="th:srch_bar">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>
-          </div>
-          <div class="inbox_chat">
-            <div class="chat_list active_chat">
-              <div class="chat_people">
-                <div class="chat_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
+                <select id="cu" style="width: 100%" >
+                  <option th:each="user : ${list}"
+                          th:value="${user.username}"
+                          th:text="${user.username}"
+                  >Responsible</option>
+                </select>
               </div>
             </div>
           </div>
         </div>
         <div class="mesgs col">
-          <div class="msg_history">
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test, which is a new approach to have</p>
-                  <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Apollo University, Delhi, India Test</p>
-                <span class="time_date"> 11:01 AM    |    Today</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img th:src="@{https://ptetutorials.com/images/user-profile.png}" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>We work directly with our designers and suppliers,
-                    and sell direct to you, which means quality, exclusive
-                    products, at a price anyone can afford.</p>
-                  <span class="time_date"> 11:01 AM    |    Today</span></div>
-              </div>
-            </div>
+          <div class="msg_history" id="messageArea">
+<!--            <div class="incoming_msg">-->
+<!--              <div class="received_msg">-->
+<!--                <div class="received_withd_msg">-->
+<!--                  <p>Test which is a new approach to have all-->
+<!--                    solutions</p>-->
+<!--                  <span class="time_date"> 11:01 AM    |    June 9</span></div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+          <form id="messageForm" name="messageForm" >
+            <div class="type_msg">
+              <div class="input_msg_write">
+                <input type="text" class="write_msg" placeholder="Type a message" id="message" autocomplete="off"/>
+                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              </div>
             </div>
-          </div>
+          </form>
+
         </div>
       </div>
       
       
     </div></div>
+
+<div class="form-body" id="chat_window" role="dialog" aria-labelledby="chat_window">
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="chatModalTitle">&nbsp;</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-light p-0" id="chat-page">
+
+        <!--*******************************-->
+
+
+        <!--div id="messageArea" class="m-3"></div-->
+        <!-- Start -->
+        <div class="chat" style="height: 300px">
+          <div class="chat-container">
+            <div class="conversation">
+              <div class="conversation-container p-3" id="messageArea1"></div>
+            </div>
+          </div>
+        </div>
+        <!-- End -->
+        <!--*******************************-->
+
+      </div>
+      <div class="modal-footer">
+        <div style="width: 100%">
+          <!--<form id="messageForm" name="messageForm" >
+            <div class="form-group">
+              <div class="input-group">
+                &lt;!&ndash;<div class="">&ndash;&gt;
+                <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="col-lg-7 form-control"/>
+                &lt;!&ndash;</div>&ndash;&gt;
+                <div class="col-lg-3">
+
+                </div>
+                <div class="col-lg-2">
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </form>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script th:src="@{/js/sockjs.js}" type="text/javascript"></script>
+<script th:src="@{/js/stomp.js}" type="text/javascript"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+  // Chat Begin
+  var messageForm = document.querySelector('#messageForm');
+  var messageInput = document.querySelector('#message');
+  var messageArea = document.querySelector('#messageArea');
+  var chatModalTitle = document.querySelector('#chatModalTitle');
+  var stompClient = null;
+  var username = [[${username}]];
+  var receiver = null;
+  var prevdate = null;
+  function connect() {
+    var socket = new SockJS('/ws');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, onConnected, onError);
+  }
+  function onConnected() {
+    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.send("/app/chat.addUser", {}, JSON.stringify({sender: username, type: 'JOIN'}))
+    chatModalTitle.innerHTML = "Online"
+    messageInput.disabled = false;
+  }
+  function sendMessage(event) {
+    var messageContent = messageInput.value.trim();
+    if(messageContent && stompClient && receiver) {
+      var chatMessage = {
+        sender: username,
+        receiver: receiver,
+        content: messageInput.value,
+        type: 'CHAT'
+      };
+      stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+      messageInput.value = '';
+    }
+    event.preventDefault();
+  }
+  function buildMessage(message) {
+    var curdate = new Date(message.date).toLocaleDateString("ru", {day:"2-digit", month:"2-digit", year:"2-digit"});
+    if((prevdate == null) || (prevdate < curdate))
+    {
+      prevdate = new Date(message.date).toLocaleDateString("ru", {day:"2-digit", month:"2-digit", year:"2-digit"});
+      var dtContainer = document.createElement('div');
+      dtContainer.classList.add('center');
+      var dt = document.createElement('span');
+      dt.classList.add('date-title');
+      var dttxt = document.createTextNode(prevdate);
+      dt.appendChild(dttxt);
+      dtContainer.appendChild(dt);
+      messageArea.appendChild(dtContainer);
+    }
+
+  // <div class="incoming_msg">
+  //           <div class="received_msg">
+  //           <div class="received_withd_msg">
+  //           <p>Test which is a new approach to have all
+  //   solutions</p>
+  //   <span class="time_date"> 11:01 AM    |    June 9</span></div>
+  //   </div>
+  //   </div>
+    if(message.sender != username){
+      var incDiv = document.createElement('div');
+      incDiv.setAttribute("class","incoming_msg");
+
+      var receivedMsgDiv = document.createElement('div');
+      receivedMsgDiv.setAttribute("class","received_msg");
+
+      var receivedWidthMsgDiv = document.createElement('div');
+      receivedWidthMsgDiv.setAttribute("class","received_withd_msg");
+      receivedWidthMsgDiv.style.backgroundColor = "#9eeb34";
+      receivedWidthMsgDiv.style.padding = "10px 5px 5px 10px";
+
+      var msgContent = document.createTextNode(message.content);
+
+      var dateTimeSpan = document.createElement('span');
+      dateTimeSpan.setAttribute("class","time_date");
+      dateTimeSpan.textContent = (message.date).toLocaleString();
+
+      receivedWidthMsgDiv.appendChild(msgContent);
+      receivedWidthMsgDiv.appendChild(dateTimeSpan);
+      receivedMsgDiv.appendChild(receivedWidthMsgDiv);
+      incDiv.appendChild(receivedMsgDiv);
+      messageArea.appendChild(incDiv);
+    }
+    else{
+      var outDiv = document.createElement('div');
+      outDiv.setAttribute("class","outgoing_msg");
+
+      var sentMsgDiv = document.createElement('div');
+      sentMsgDiv.setAttribute("class","sent_msg");
+      sentMsgDiv.style.backgroundColor = "#5ec0eb";
+      sentMsgDiv.style.padding = "10px 5px 5px 10px";
+
+
+      var msgContent = document.createTextNode(message.content);
+
+      var dateTimeSpan = document.createElement('span');
+      dateTimeSpan.setAttribute("class","time_date");
+      dateTimeSpan.textContent = (message.date).toLocaleString();
+
+      sentMsgDiv.appendChild(msgContent);
+      sentMsgDiv.appendChild(dateTimeSpan);
+      outDiv.appendChild(sentMsgDiv);
+      messageArea.appendChild(outDiv);
+    }
+
+    // var mc = document.createElement('div');
+    // mc.classList.add('message');
+    // var mctxt ;
+    // mctxt = document.createTextNode(message.content);
+    //
+    // mc.appendChild(mctxt);
+    // var s2 = document.createElement('span');
+    // var d = new Date(message.date);
+    // var s2txt = document.createTextNode(d.toLocaleTimeString([], {hour12: false, hour: '2-digit', minute:'2-digit'}));
+    // s2.appendChild(s2txt);
+    // var s1 = document.createElement('span');
+    // s1.classList.add('metadata');
+    // s1.appendChild(s2);
+    // mc.appendChild(s1);
+    // if(message.sender === username)
+    // {
+    //   mc.classList.add('outgoing_msg');
+    // }
+    // else
+    // {
+    //   mc.classList.add('received');
+    // }
+    // messageArea.appendChild(mc);
+    messageArea.scrollTop = messageArea.scrollHeight;
+  }
+  function onMessageReceived(payload) {
+    var message = JSON.parse(payload.body);
+    if(message.type === 'CHAT' && (message.receiver === username || message.sender === username))
+    {
+      buildMessage(message);
+      $('#cu').val(message.receiver).trigger('change');
+      if(message.sender != username)
+        notipy(message.senderfullname, message.content,message.sender)
+    }
+    loadMessages(receiver);
+  }
+  function onError() {
+    messageInput.disabled = true;
+    chatModalTitle.innerHTML = "Offline"
+  }
+  function loadMessages(usr) {
+    messageArea.innerHTML = "";
+    prevdate = null;
+    // alert(username);
+    // alert(receiver);
+    $.ajax({
+      type: "POST",
+      url: "/chat/messages",
+      data: { sender: username, receiver: usr },
+      success: function(result){
+        for(var i = 0; i < result.length; i++)
+        {
+          buildMessage(result[i]);
+        }
+      }
+    });
+    this.scrollTop = this.scrollHeight;
+  }
+  $('#chat_window').on('show.bs.modal', function (e) {
+    loadMessages(receiver);
+  });
+  messageForm.addEventListener('submit', sendMessage, true);
+  connect();
+  var chosenUser = [[${chosenUser}]];
+  if(chosenUser){
+    receiver = chosenUser;
+    loadMessages(chosenUser)
+  }
+  $('#cu').select2();
+  $('#cu').on('select2:select', function (e) {
+    receiver = e.params.data.id;
+    loadMessages(receiver)
+  });
+  // Chat End
+  function changePageAndSize() {
+    $('#pageSizeSelect').change(function(evt) {
+      var currentLocation = window.location.pathname;
+      window.location.replace(currentLocation + "?pageSize=" + this.value + "&page=1");
+    });
+  }
+</script>
     </body>
     </html>

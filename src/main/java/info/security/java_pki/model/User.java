@@ -1,5 +1,8 @@
 package info.security.java_pki.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,14 @@ public class User {
 
     private String password;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    String rsaPublicKey;
+
+    @JsonIgnore
+    private String rsaPrivateKey;
+
+    @JsonIgnore
+    private String aesKey;
 
     //region get-set
     public long getId() {
@@ -40,5 +51,28 @@ public class User {
         this.password = password;
     }
 
-    //endregion
+    public String getRsaPublicKey() {
+        return rsaPublicKey;
+    }
+
+    public void setRsaPublicKey(String rsaPublicKey) {
+        this.rsaPublicKey = rsaPublicKey;
+    }
+
+    public String getRsaPrivateKey() {
+        return rsaPrivateKey;
+    }
+
+    public void setRsaPrivateKey(String rsaPrivateKey) {
+        this.rsaPrivateKey = rsaPrivateKey;
+    }
+
+    public String getAesKey() {
+        return aesKey;
+    }
+
+    public void setAesKey(String aesKey) {
+        this.aesKey = aesKey;
+    }
+//endregion
 }
