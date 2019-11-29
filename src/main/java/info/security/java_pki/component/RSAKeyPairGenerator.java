@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.*;
 import java.util.Base64;
+import java.util.Scanner;
 
 public class RSAKeyPairGenerator {
 
@@ -27,6 +28,15 @@ public class RSAKeyPairGenerator {
         fos.write(key);
         fos.flush();
         fos.close();
+    }
+
+    public void readFromFile(String path) throws IOException {
+        File file = new File(path);
+
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine())
+            System.out.println(sc.nextLine());
     }
 
     public PrivateKey getPrivateKey() {

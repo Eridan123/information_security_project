@@ -20,7 +20,8 @@
             </div>
             <div class="th:srch_bar">
               <div class="stylish-input-group">
-                <select id="cu" style="width: 100%" >
+                <select id="cu" style="width: 100%" placeholder="select user to chat with">
+                  <option value=""></option>
                   <option th:each="user : ${list}"
                           th:value="${user.username}"
                           th:text="${user.username}"
@@ -56,7 +57,7 @@
       
     </div></div>
 
-<div class="form-body" id="chat_window" role="dialog" aria-labelledby="chat_window">
+<div hidden="hidden" class="form-body" id="chat_window" role="dialog" aria-labelledby="chat_window">
   <div class="modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

@@ -18,12 +18,15 @@ public class User {
     private String password;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Column(length = 3000)
     String rsaPublicKey;
 
     @JsonIgnore
+    @Column(length = 5000)
     private String rsaPrivateKey;
 
     @JsonIgnore
+    @Column(length = 3000)
     private String aesKey;
 
     //region get-set

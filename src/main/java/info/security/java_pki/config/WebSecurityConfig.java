@@ -3,9 +3,18 @@ package info.security.java_pki.config;
 
 import info.security.java_pki.repository.UserRepository;
 import info.security.java_pki.service.UserDetailsServiceImpl;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -14,8 +23,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.client.RestTemplate;
 
+import javax.net.ssl.SSLContext;
 import javax.sql.DataSource;
+import java.io.File;
+import java.util.Collections;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Configuration
 @EnableWebSecurity
@@ -46,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
 
@@ -97,6 +112,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/resources/**","/ajax/**","/assets/**","/vendor/**","/styles/**","/plugins/**","/fonts/**","/javascripts/**","/stylesheets/**","/static/**","/css/**","/js/**","/images/**");
+    }
+
+
+    @Value("${trust.store}")
+    private File trustStore;
+    @Value("${trust.store.password}")
+    private String trustStorePassword;
+
+
+    @Bean
+    RestTemplate restTemplate() throws Exception {
+        SSLContext sslContext = new SSLContextBuilder()
+                .loadTrustMaterial(trustStore, trustStorePassword.toCharArray())
+                .build();
+        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext);
+        CloseableHttpClient httpClient = HttpClients.custom()
+                .setSSLSocketFactory(socketFactory)
+                .build();
+        HttpComponentsClientHttpRequestFactory factory =
+                new HttpComponentsClientHttpRequestFactory(httpClient);
+        return new RestTemplate(factory);
+    }
+
+    @Test
+    public void whenGETanHTTPSResource_thenCorrectResponse() throws Exception {
+        ResponseEntity<String> response =
+                restTemplate().getForEntity("/login", String.class, Collections.emptyMap());
+
+        assertEquals("<h1>Welcome to Secured Site</h1>", response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
 }

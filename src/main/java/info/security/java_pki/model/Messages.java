@@ -13,6 +13,7 @@ public class Messages {
 
     private Date date = new Date();
     private String content;
+    private byte[] encrypted_aes_key;
     private String sender;
     private String receiver;
 
@@ -38,6 +39,16 @@ public class Messages {
         this.date = date;
     }
 
+
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
     public String getContent() {
         return content;
     }
@@ -46,12 +57,12 @@ public class Messages {
         this.content = content;
     }
 
-    public String getSender() {
-        return sender;
+    public byte[] getEncrypted_aes_key() {
+        return encrypted_aes_key;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setEncrypted_aes_key(byte[] encrypted_aes_key) {
+        this.encrypted_aes_key = encrypted_aes_key;
     }
 
     public String getReceiver() {
